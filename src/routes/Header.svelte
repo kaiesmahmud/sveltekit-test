@@ -22,11 +22,11 @@
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
 				<a href="/about">About</a>
 			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Student Login</a>
+			<li aria-current={$page.url.pathname.startsWith('/student/login') ? 'page' : undefined}>
+				<a href="/student/login">Student Login</a>
 			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Teacher Login</a>
+			<li aria-current={$page.url.pathname.startsWith('/teacher/login') ? 'page' : undefined}>
+				<a href="/teacher/login">Teacher Login</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
