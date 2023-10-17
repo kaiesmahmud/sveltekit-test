@@ -1,6 +1,8 @@
 <script>
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	export let data
+	
 </script>
 
 <svelte:head>
@@ -16,7 +18,7 @@
 				<img src={welcome_fallback} alt="Welcome" />
 			</picture>
 		</span>
-
+		{data.user?.email || 'Login Now'}
 		
 	</h1>
 
