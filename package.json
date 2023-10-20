@@ -19,7 +19,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"grapesjs": "^0.21.7",
-		"linkedom": "^0.15.6"
+		"grapesjs": "^0.21.7"
 	}
 }
