@@ -1,8 +1,9 @@
 <script>
+	import CourseShowCard from './../lib/components/CourseShowCard.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 	export let data
-	
+	let enrolled =data.user?.enrolledcourses
 </script>
 
 <svelte:head>
@@ -10,7 +11,7 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
+<section >
 	<h1>
 		<span class="welcome">
 			<picture>
@@ -18,14 +19,25 @@
 				<img src={welcome_fallback} alt="Welcome" />
 			</picture>
 		</span>
-		{data.user?.email || 'Login Now'}
-		
+		<p class="capitalize">
+			{data.user?.username || 'Login Now'}
+		</p>
 	</h1>
-
+	
 	<h2>
-		Please Login to see Courses
+		{#if !data.user?.username}
+		  Please Login to see Courses
+		{:else}
+		  Find Best Courses
+		{/if}
 	</h2>
-
+	<div class="flex flex-col items-center gap-5 w-full justify-center mt-5">
+		{#if data.allCourses}
+			{#each data.allCourses as course}
+				<CourseShowCard course={course} enrolled={enrolled} data={data} />
+			{/each}
+		{/if}
+	</div>
 </section>
 
 <style>
@@ -34,7 +46,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		flex: 0.6;
+		/* flex: 0.6; */
 	}
 
 	h1 {

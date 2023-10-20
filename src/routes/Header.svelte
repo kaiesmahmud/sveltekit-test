@@ -26,7 +26,7 @@
 			{/if}
 			{#if user?.userType}
 				<li class="p-3">
-					Hi, {user.email}
+					Hi, {user.username}
 				</li>
 				
 			{/if}

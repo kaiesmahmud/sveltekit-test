@@ -6,20 +6,10 @@
 	// console.log("Layout data is",data)
 	const user = data.user
 
-	// const logOut = async()=>{
-	// 	console.log("pressing log out!!")
-	// 	data.user = null;
-	// 	// Delete the user's cookies
-	// 	await cookies.delete('userType');
-  	// 	await cookies.delete('email');
-  	// 	await cookies.delete('pwd');
-	// 	// Redirect the user to the login page
-	// 	throw redirect(302,"/");
-	// }
+	
 </script>
 
 <div class="app">
-	<!-- <Header user={user} logOut={logOut}/> -->
 	<Header user={user} />
 
 	<main>
