@@ -4,10 +4,10 @@ export const actions ={
   
   console.log("logout teacher - events",events)
       const {cookies} = events
-      cookies.delete('email',{path: '/'})   
+      cookies.delete('username',{path: '/'})   
       cookies.delete("pwd",{path: '/'})
       cookies.delete("userType",{path: '/'})     
-      console.log("Trying to logout!!")
+      console.log(" logout!!")
       
       return {
           user : null

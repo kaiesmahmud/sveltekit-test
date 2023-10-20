@@ -9,6 +9,7 @@ export const load = async(event) => {
     console.log("parent user info",user)
 
     if(user?.userType == "student"){
+        
         throw redirect(302,"/student/dashboard")  // If the user is student, then redirect to student dashboard
     }
     if(user?.userType == "teacher"){
