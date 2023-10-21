@@ -1,4 +1,6 @@
 <script>
+  import SectionDetails from "../../../../lib/components/SectionDetails.svelte";
+
     export let data
     let viewCourseDetails = data.viewCourseDetails
     // console.log("Got ",viewCourseDetails)
@@ -12,7 +14,12 @@
         <img src={courseimage} alt={shortname} class="rounded">
     </div>
     <div class="w-[45%] bg-white ">
-        <h1 class="text-start">{fullname}</h1>
-        <h2 class="p-3 bg-slate-800 text-white font-semibold inline-block rounded">{shortname}</h2>
+        <h1 class="text-start text-black">{fullname}</h1>
+        <h2 class="py-2 px-5 bg-teal-800 text-white inline-block rounded-full">{shortname}</h2>
     </div>
+</div>
+<div class="mt-10 flex flex-col gap-10 ">
+    {#each courseSectionDetails as section}
+        <SectionDetails section={section}/>
+    {/each}
 </div>
