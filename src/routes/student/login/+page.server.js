@@ -1,7 +1,7 @@
 
 export const actions = {
     //Default async Function
-    default: async ({request, cookies,fetch})=>{
+    default: async ({request, cookies})=>{
         const data = await request.formData();
         
         const username = data.get('username')   // Get Email from the Student form
