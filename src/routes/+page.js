@@ -23,7 +23,7 @@ export const load = async({parent,fetch}) => {
         })
 
         //=========== Fetching Again for User Roles and EnrollCourses Details Collection ==========
-        let userInfoAll = await getRolesEnrolls(user.token, user.id)
+        let userInfoAll = await getRolesEnrolls(user.token, user.id,fetch)
         const Newuser = {...user, ...userInfoAll}
 
 

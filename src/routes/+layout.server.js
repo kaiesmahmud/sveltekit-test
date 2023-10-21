@@ -5,7 +5,7 @@ import { getAllCourses } from '../lib/fetch/getAllCourses.js'
 import { addCourseImg } from '../lib/fetch/addCourseImg.js'
 import { getAllEnrollCourses } from '../lib/fetch/getAllEnrollCourses.js'
 
-export const load = async({cookies} ) => {
+export const load = async({cookies,fetch} ) => {
     const userType = cookies.get("userType")
     const username = cookies.get("username")
     const password = cookies.get("pwd")
@@ -25,12 +25,12 @@ export const load = async({cookies} ) => {
             user = {...user, token:token?.token }
             
 //========== Fetch User Data by using token ===============================================
-            const profileInfo = await getUserProfile(user?.token,username)
+            const profileInfo = await getUserProfile(user?.token,username,fetch)
             // console.log("Fetch Result of ProfileInfo function",profileInfo)
             user = {...user, ...profileInfo}
 
 //=========== Fetching Again for User Roles and EnrollCourses Details Collection ==========
-            const userInfoAll = await getRolesEnrolls(user.token, user.id)
+            const userInfoAll = await getRolesEnrolls(user.token, user.id,fetch)
             user = {...user, ...userInfoAll}
 
 
