@@ -1,6 +1,6 @@
 <script>
-	import { addCourseImg } from './../fetch/addCourseImg.js';
-    export let data
+	// import { addCourseImg } from './../fetch/addCourseImg.js';
+    // export let data
     export let course
     export let enrolled
     let open = false
@@ -14,14 +14,15 @@
             enroll = false 
         }
         // console.log(enroll)
-        let img =  addCourseImg(data.user.token,course.id)
+        // let img =  addCourseImg(data.user.token,course.id)
 </script>
 
 <div class="w-1/2 bg-white rounded shadow p-5 capitalize">
     <div>
-        {#if img}
+        <!-- {#if img}
             <img src={img} alt={course.shortname}/>
-        {/if}
+            {/if} -->
+            <img src={course?.courseimage} alt={course.shortname}/>
     </div>
     <h3 class="text-4xl ">{course?.fullname}</h3>
     <h4>{course?.shortname}</h4>

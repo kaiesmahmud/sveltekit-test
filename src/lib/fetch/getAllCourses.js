@@ -1,4 +1,3 @@
-import { addCourseImg } from "./addCourseImg";
 
 export const getAllCourses = async(token) =>{
     try {
@@ -11,9 +10,10 @@ export const getAllCourses = async(token) =>{
                 }
             })
         const allCourses = await response.json();
+        
+        //Filtering and Removing extra Formats of data
         const coursesWithOutImg = allCourses.filter(c=> c.format == "topics")
-        
-        
+
         return coursesWithOutImg ; // Returns an Array of Objects containing Courses
 
     } catch (error) {
