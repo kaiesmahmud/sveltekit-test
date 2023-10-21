@@ -1,4 +1,4 @@
-export const getUserProfile = async (token,username)=> {
+export const getUserProfile = async (token,username,fetch)=> {
     try {
         let fetchProfileURL = "http://localhost/moodle/webservice/rest/server.php?wstoken="+token+"&moodlewsrestformat=json&wsfunction=core_user_get_users&criteria[0][key]=username&criteria[0][value]="+username
         

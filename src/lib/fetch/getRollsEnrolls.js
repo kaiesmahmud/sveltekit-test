@@ -1,4 +1,4 @@
-export const getRolesEnrolls = async (token,id)=>{
+export const getRolesEnrolls = async (token,id,fetch)=>{
     try {
         if(token && id){
             let fetchRolesEnrolls = "http://localhost/moodle/webservice/rest/server.php?wstoken="+token+"&moodlewsrestformat=json&wsfunction=core_user_get_course_user_profiles&userlist[0][userid]="+id+"&userlist[0][courseid]=1"
