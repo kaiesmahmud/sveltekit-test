@@ -1,11 +1,11 @@
 import { findToken } from '../lib/fetch/token.js'
 import { getUserProfile } from '../lib/fetch/getUserProfile.js'
-import { getRolesEnrolls, getRollsEnrolls } from '../lib/fetch/getRollsEnrolls.js'
+import { getRolesEnrolls } from '../lib/fetch/getRollsEnrolls.js'
 import { getAllCourses } from '../lib/fetch/getAllCourses.js'
 import { addCourseImg } from '../lib/fetch/addCourseImg.js'
+import { getAllEnrollCourses } from '../lib/fetch/getAllEnrollCourses.js'
 
-export const load = async({cookies,fetch} ) => {
-    // const adminToken = '34fb21fc7d5c90736902f6ea4f728442'
+export const load = async({cookies} ) => {
     const userType = cookies.get("userType")
     const username = cookies.get("username")
     const password = cookies.get("pwd")
@@ -36,19 +36,31 @@ export const load = async({cookies,fetch} ) => {
 
             // console.log("Got User - ",user)
             
-            //=========== Fetch All Courses For User ===================================================
+//=========== Fetch All Courses For User ===================================================
             const coursesWithOutImg = await getAllCourses(user?.token)
             // console.log("Got allCourses - ",coursesWithOutImg)
 
-            // const coursesWithImg = coursesWithOutImg.map(async course => {
-            //     const courseimage = await addCourseImg(token,course.id)
-            //     return { ...course,courseimage}
+//============ Fetch Images URL in Array ====================================================
+            // const courseImages = []
+
+            // coursesWithOutImg.map(async course => {
+            //     const courseImage = await addCourseImg(token.token, course.id);
+            //     courseImages[course.id] = courseImage;
+            //     console.log(courseImages[course.id])
             // })
-            // console.log("All courses", coursesWithImg)
+            //----->> Moved to +page.js
+            
+
 //=========== Fetch Enrolled Courses by Users that will be shown to Dashboard ==============
+            // const enrolledCourses = await getAllEnrollCourses(token.token, user.id)
 
+            return { 
+                user, 
+                allCourses:coursesWithOutImg ,
+                // courseImages,
+                // enrolledCourses
 
-            return { user, allCourses:coursesWithOutImg }
+            }
         }
         if(!token){
             console.log("token Not Found! in Layout server-", token)

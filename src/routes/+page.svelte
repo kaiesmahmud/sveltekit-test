@@ -1,9 +1,10 @@
 <script>
-	import CourseShowCard from './../lib/components/CourseShowCard.svelte';
+	import CourseShowCard from '$lib/components/CourseShowCard.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 	export let data
 	let enrolled =data.user?.enrolledcourses
+	
 </script>
 
 <svelte:head>
@@ -34,7 +35,13 @@
 	<div class="flex flex-col items-center gap-5 w-full justify-center mt-5">
 		{#if data.allCourses}
 			{#each data.allCourses as course}
-				<CourseShowCard course={course} enrolled={enrolled} data={data} />
+				<CourseShowCard 
+					course={course} 
+					enrolled={enrolled} 
+					courseImages={data.courseImages} 
+					userType={data.user?.userType}
+					userToken={data.user?.token}
+					/>
 			{/each}
 		{/if}
 	</div>
