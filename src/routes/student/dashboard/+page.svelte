@@ -1,23 +1,28 @@
 <script>
+	import AllEnrollCards from '$lib/components/AllEnrollCards.svelte';
     export let data
-    let enrolledCourses = data.user?.enrolledcourses
+    let allEnrolledCourses = data.enrolledCourses
 </script>
+
+<svelte:head>
+	<title>Dashboard</title>
+	<meta name="description" content="See Enrolled Courses" />
+</svelte:head>
+
 <div class="flex justify-between">
     <h1>Student-dashboard</h1>
     <form  method="post">
-        <button class="p-3 border bg-slate-500 rounded font-semibold text-white" >Logout</button>
+        <button class="px-5 py-2 border bg-slate-500 rounded font-semibold text-white hover:bg-slate-800 transition-all ease-in duration-150" >Logout</button>
     </form>
 </div>
 <div>
     <h2>Enrolled - Courses</h2>
-    <div class="flex items-center text-lg font-light gap-5 mt-10">
-        <!-- {#each enrolledCourses as course  }
-            <div class="flex flex-col flex-wrap items-center p-5 shadow-xl  bg-blue-400 rounded">
-                <div class="w-full h-40 bg-gradient-to-t from-red-500 to-pink-600">
-                </div>
-                <h1 class="text-xl">{course.fullname}</h1>
-                <p class="font-semibold">{course.shortname}</p>
-            </div>
-        {/each} -->
-    </div>
+    {#if allEnrolledCourses.length > 0}
+    <AllEnrollCards allEnrolledCourses={allEnrolledCourses} userType={data.user?.userType}/>
+    {:else}
+    <p class="flex flex-col py-20 justify-center items-center gap-6 font-semibold text-2xl text-red-400">
+        No Courses Enrolled !
+        <a href="/" class="px-5 py-2 border bg-slate-500 rounded font-semibold text-white hover:bg-slate-800 transition-all ease-in duration-150">Browse Courses !</a>
+    </p>
+    {/if}
 </div>

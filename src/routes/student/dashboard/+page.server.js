@@ -10,7 +10,10 @@ export const actions ={
       console.log(" logout!!")
       
       return {
-          user : null
+          user : null,
+          allCourses:null ,
+          courseImages:null,
+          enrolledCourses:null
       }
 },
 }
