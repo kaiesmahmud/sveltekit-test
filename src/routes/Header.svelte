@@ -8,7 +8,7 @@
 <header>
 	
 	<nav>
-		<ul>
+		<ul class="text-xl font-bold text-slate-800 px-5">
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 				<a href="/">Home</a>
 			</li>
@@ -59,7 +59,7 @@
 
 	ul {
 		position: relative;
-		padding: 0;
+		/* padding: 0; */
 		margin: 0;
 		height: 3em;
 		display: flex;
@@ -93,8 +93,8 @@
 		align-items: center;
 		padding: 0 0.5rem;
 		color: var(--color-text);
-		font-weight: 700;
-		font-size: 0.8rem;
+		/* font-weight: 700;
+		font-size: 0.8rem; */
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
 		text-decoration: none;
