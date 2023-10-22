@@ -13,13 +13,14 @@
            id: 'basic-actions',
            el: '.panel__basic-actions',
            buttons: [
+            //    {
+            //    id: 'visibility',
+            //    active: true, // active by default
+            //    className: 'btn-toggle-borders',
+            //    label: '<u>B</u>',
+            //    command: 'sw-visibility', // Built-in command
+            //    }, 
                {
-               id: 'visibility',
-               active: true, // active by default
-               className: 'btn-toggle-borders',
-               label: '<u>B</u>',
-               command: 'sw-visibility', // Built-in command
-               }, {
                id: 'export',
                className: 'btn-open-export',
                label: 'Exp',
@@ -40,7 +41,7 @@
                }
            ],
            });
-
+           
     })
 </script>
 
@@ -49,7 +50,7 @@
         <div class="panel__basic-actions"></div>
     </div>
     <div id="gjs">
-    ... <h1>Hello</h1>
+    <h1>Hello</h1>
     </div>
     <div id="blocks"></div>
 </div>
