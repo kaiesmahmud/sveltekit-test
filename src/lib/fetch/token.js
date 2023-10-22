@@ -1,7 +1,7 @@
 //GEtting Token using Username , password & service
-export const findToken = async(username,password)=>{
+export const findToken = async(username,password,service)=>{
     try {
-        let url = "http://localhost/moodle/login/token.php?username="+username+"&password="+password+"&service=student-api"
+        let url = "http://localhost/moodle/login/token.php?username="+username+"&password="+password+"&service="+service
         const response = await fetch(url,
             {
                 method: 'POST',
