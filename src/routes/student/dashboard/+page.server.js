@@ -2,7 +2,6 @@
 export const actions ={
   default: async (events)=>{
   
-  console.log("logout teacher - events",events)
       const {cookies} = events
       cookies.delete('username',{path: '/'})   
       cookies.delete("pwd",{path: '/'})

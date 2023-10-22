@@ -14,7 +14,7 @@ export const load = async({parent,fetch}) => {
         }
     }
     if(!user){
-        throw redirect(302,"/")  // If the user is student, then redirect to student dashboard
+        throw redirect(302,"/")   // If the user data not found then redirect to homepage
     }
     
 }

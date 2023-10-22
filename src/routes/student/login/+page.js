@@ -6,7 +6,7 @@ export const load = async(event) => {
     const {parent} = event;
     const {user} = await parent();
     
-    console.log("parent user info",user)
+    console.log("Students user info",user)
 
     if(user?.userType == "student"){
         

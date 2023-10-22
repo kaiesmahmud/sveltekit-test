@@ -2,8 +2,8 @@ import { findToken } from '../lib/fetch/token.js'
 import { getUserProfile } from '../lib/fetch/getUserProfile.js'
 import { getRolesEnrolls } from '../lib/fetch/getRollsEnrolls.js'
 import { getAllCourses } from '../lib/fetch/getAllCourses.js'
-import { addCourseImg } from '../lib/fetch/addCourseImg.js'
-import { getAllEnrollCourses } from '../lib/fetch/getAllEnrollCourses.js'
+// import { addCourseImg } from '../lib/fetch/addCourseImg.js'
+// import { getAllEnrollCourses } from '../lib/fetch/getAllEnrollCourses.js'
 
 export const load = async({cookies,fetch} ) => {
     const userType = cookies.get("userType")
@@ -17,7 +17,13 @@ export const load = async({cookies,fetch} ) => {
 
     if(user.userType){
         //Find Token from username & Password =============================================
-        const token = await findToken(user.username,user.password)
+        let token ;
+        if(user.userType == 'student'){
+            token = await findToken(user.username,user.password,"student-api")
+        }else{
+            token = await findToken(user.username,user.password,"teacher-api")
+
+        }
     
         //if the token Found then get the full user info (without role & enrollcourses)
         if(token.token){
