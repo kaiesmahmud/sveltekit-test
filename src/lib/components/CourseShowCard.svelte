@@ -1,18 +1,19 @@
 <script>
   import { onMount } from 'svelte';
 	import { enrollCourse } from './../fetch/enrollCourse.js';
-	import { redirect } from '@sveltejs/kit';
     export let userType
     export let userToken
     export let course
     export let enrolled
     export let courseImages
-    let enrollError,handleEnroll ;
+    let enrollmsg,handleEnroll ;
     onMount(()=>{
-        handleEnroll = async()=>{
-		// console.log("Handling Enroll")
-		const isEnrolled = await enrollCourse(userToken,course.id,userType)
-        if(!isEnrolled){ enrollError = " Error Enrollment"}
+        if(userType == 'student'){
+            handleEnroll = async()=>{
+            // console.log("Handling Enroll")
+            const isEnrolled = await enrollCourse(userToken,course.id,userType) //Only For Students - Not Teachers
+            if(!isEnrolled){ enrollmsg = " Checking Enrollment"}
+        }
 	}
     })
     
@@ -41,11 +42,13 @@
     {#if open}
         <div contenteditable="false" bind:innerHTML={course.summary} class="p-3 ">
         </div>
-        {#if !enroll}
-            <button on:click={handleEnroll}  class="p-3 rounded shadow bg-blue-400 font-bold text-black hover:bg-blue-500 transition-all ease-in">Enroll Now</button>
-        {/if}
-        {#if enroll}
-            <button disabled="disabled" class="p-3 rounded shadow bg-red-300 font-bold text-black">Already Enroll</button>
+        {#if userType == 'student'}
+            {#if !enroll}
+                <button on:click={handleEnroll}  class="p-3 rounded shadow bg-blue-400 font-bold text-black hover:bg-blue-500 transition-all ease-in">Enroll Now</button>
+            {/if}
+            {#if enroll}
+                <button disabled="disabled" class="p-3 rounded shadow bg-red-300 font-bold text-black">Already Enroll</button>
+            {/if}
         {/if}
     {/if}
     {#if open}
@@ -53,7 +56,7 @@
     {:else }
         <button on:click={onclick}  class="p-3 rounded shadow bg-teal-400 font-bold text-black hover:bg-teal-500 transition-all ease-in">Read Summary</button>
     {/if}
-    {#if enrollError}
-        <p>{enrollError}</p>
+    {#if enrollmsg}
+        <p>{enrollmsg}</p>
     {/if}
 </div>
