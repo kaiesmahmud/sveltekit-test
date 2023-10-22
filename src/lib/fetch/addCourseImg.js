@@ -6,9 +6,6 @@ export const addCourseImg = async (token,courseid,fetch)=> {
         const response = await fetch(fetchURL,
             {
                 method: 'GET',
-                // headers: {
-                //     'Content-Type': 'application/json'
-                // }
             })
         const courseWithImgURL = await response.json();
         
