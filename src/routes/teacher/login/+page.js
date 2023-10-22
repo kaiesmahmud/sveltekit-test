@@ -6,7 +6,7 @@ export const load = async(event) => {
     const {parent} = event;
     const {user} = await parent();
 
-    console.log("parent user info",user)
+    console.log("Teachers user info",user)
     
     if(user?.userType == "student"){
         throw redirect(302,"/student/dashboard")  // If the user is student, then redirect to student dashboard
