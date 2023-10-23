@@ -1,10 +1,11 @@
 <script>
-  import SectionDetails from "../../../../lib/components/SectionDetails.svelte";
+	import Summary from '$lib/components/Summary.svelte';
+  import SectionDetails from "$lib/components/SectionDetails.svelte";
 
     export let data
     let viewCourseDetails = data.viewCourseDetails
     // console.log("Got ",viewCourseDetails)
-    const {shortname,fullname,courseimage,courseSectionDetails} = viewCourseDetails
+    const {shortname,fullname,courseimage,courseSectionDetails,summary} = viewCourseDetails
 
 </script>
 
@@ -18,6 +19,8 @@
         <h2 class="py-2 px-5 bg-teal-800 text-white inline-block rounded-full">{shortname}</h2>
     </div>
 </div>
+<Summary summary={summary}/>
+
 <div class="mt-10 flex flex-col gap-10 ">
     {#each courseSectionDetails as section}
         <SectionDetails section={section}/>
