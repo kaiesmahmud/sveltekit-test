@@ -93,7 +93,7 @@
   </script>
   
   <div class="html-editor ">
-    <div id="html-editor" class="max-h-[50vh]"></div>
+    <div id="html-editor" class="max-h-[80vh]"></div>
     <div id="blocks" class=" "></div>
     <button on:click={updateHtml} class={`${cssbtn} inline-block mt-10`}>Update Course</button>
   </div>
