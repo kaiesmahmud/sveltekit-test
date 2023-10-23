@@ -4,6 +4,7 @@
     import ImageUpdate from '$lib/components/ImageUpdate.svelte';
     import Summary from '$lib/components/Summary.svelte';
   import UpdateSummary from '../../../../../lib/components/UpdateSummary.svelte';
+  import UpdateSectionDetails from '../../../../../lib/components/UpdateSectionDetails.svelte';
 
     export let data
     let viewCourseDetails = data.viewCourseDetails
@@ -29,6 +30,7 @@
 
 <div class="mt-10 flex flex-col gap-10 ">
     {#each courseSectionDetails as section}
-        <SectionDetails section={section}/>
+        <!-- <SectionDetails section={section}/> -->
+        <UpdateSectionDetails section={section}/>
     {/each}
 </div>
