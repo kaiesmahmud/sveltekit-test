@@ -1,8 +1,9 @@
 <script>
     import { onMount } from 'svelte';
     import 'grapesjs/dist/css/grapes.min.css';
-    import grapesjs from 'grapesjs';
+    import grapesjs, { Editor } from 'grapesjs';
     let editor;
+    let imageEditor;
     onMount(() => {
         editor = grapesjs.init({container: '#grapesjs-container',});
                editor.Panels.addPanel({
@@ -41,6 +42,21 @@
                }
            ],
            });
+
+           imageEditor = new Editor({
+        container: '#image-editor',
+        components: ['image'],
+        plugins: [ fileManager ],
+        data: {
+          components: [
+            {
+              type: 'image',
+              src: viewCourseDetails.courseimage,
+            },
+          ],
+        },
+      });
+    
            
     })
 </script>

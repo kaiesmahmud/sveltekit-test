@@ -1,11 +1,12 @@
 <script>
 	import { handleEditBtn } from './../../../../lib/fetch/editCourse.js';
   import SectionDetails from "../../../../lib/components/SectionDetails.svelte";
+  import Summary from '../../../../lib/components/Summary.svelte';
 
     export let data
     let viewCourseDetails = data.viewCourseDetails
     // console.log("Got ",viewCourseDetails)
-    const {shortname,fullname,courseimage,courseSectionDetails} = viewCourseDetails
+    const {shortname,fullname,courseimage,courseSectionDetails,summary} = viewCourseDetails
     let cssbtn = "px-5 py-3 font-semibold text-xl bg-slate-800 text-white/80 hover:text-white hover:bg-slate-700 rounded transition-all ease-in duration-150"
     let handleEdit = () => {
         handleEditBtn(viewCourseDetails.id)
@@ -25,6 +26,7 @@
         <button on:click={handleEdit} class={cssbtn}>Edit Course</button>
     </div>
 </div>
+<Summary summary={summary}/>
 <div class="mt-10 flex flex-col gap-10 ">
     {#each courseSectionDetails as section}
         <SectionDetails section={section}/>

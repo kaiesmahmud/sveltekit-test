@@ -1,50 +1,34 @@
 <script>
-	import { onMount } from 'svelte';
-    import 'grapesjs/dist/css/grapes.min.css';
-    import grapesjs from 'grapesjs';
+    import SectionDetails from '$lib/components/SectionDetails.svelte';
+    import CourseNameUpdate from '$lib/components/CourseNameUpdate.svelte';
+    import ImageUpdate from '$lib/components/ImageUpdate.svelte';
+    import Summary from '$lib/components/Summary.svelte';
+  import UpdateSummary from '../../../../../lib/components/UpdateSummary.svelte';
 
-    // onMount(()=>{
-    //     const editor = grapesjs.init({
-    //         container: '#grapesjs-container',
-    //         blockManager: {
-    //             appendTo: '#blocks',
-    //             blocks: [
-    //             {
-    //                 id: 'section', // id is mandatory
-    //                 label: '<b>Section</b>', // You can use HTML/SVG inside labels
-    //                 attributes: { class:'gjs-block-section' },
-    //                 content: `<section>
-    //                 <h1>This is a simple title</h1>
-    //                 <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
-    //                 </section>`,
-    //             }, {
-    //                 id: 'text',
-    //                 label: 'Text',
-    //                 content: '<div data-gjs-type="text">Insert your text here</div>',
-    //             }, {
-    //                 id: 'image',
-    //                 label: 'Image',
-    //                 // Select the component once it's dropped
-    //                 select: true,
-    //                 // You can pass components as a JSON instead of a simple HTML string,
-    //                 // in this case we also use a defined component type `image`
-    //                 content: { type: 'image' },
-    //                 // This triggers `active` event on dropped components and the `image`
-    //                 // reacts by opening the AssetManager
-    //                 activate: true,
-    //             }
-    //             ]
-    //         },
-    //     });
+    export let data
+    let viewCourseDetails = data.viewCourseDetails
+    console.log("Got ",viewCourseDetails)
+    const {shortname,fullname,courseimage,courseSectionDetails,summary} = viewCourseDetails
 
-    // })
+    let cssbtn = "px-5 py-3 font-semibold text-xl bg-slate-800 text-white/80 hover:text-white hover:bg-slate-700 rounded transition-all ease-in duration-150"
+    let inputCSS = "border border-black p-5 rounded w-full text-2xl"
 </script>
 
-<h1>Edit Course Mode</h1>
-<div id="grapesjs-container">
+<h6 class=" text-center">{viewCourseDetails.displayname}</h6>
 
+<div class="custom__container">
+    <ImageUpdate courseimage={courseimage} shortname={shortname} cssbtn={cssbtn}/>
 </div>
-<div id="gjs">
-    <h1>Hello World Component!</h1>
+
+<div class="custom__container mt-10">
+    <CourseNameUpdate shortname={shortname} fullname={fullname} inputCSS={inputCSS} cssbtn={cssbtn}/>
 </div>
-<div id="blocks"></div>
+{#if summary}
+    <UpdateSummary summary={summary} cssbtn={cssbtn} />
+{/if}
+
+<div class="mt-10 flex flex-col gap-10 ">
+    {#each courseSectionDetails as section}
+        <SectionDetails section={section}/>
+    {/each}
+</div>
