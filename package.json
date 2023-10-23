@@ -19,6 +19,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"grapesjs": "^0.21.7"
+		"grapesjs": "^0.21.7",
+		"grapesjs-plugin-file": "^0.0.5"
 	}
 }
