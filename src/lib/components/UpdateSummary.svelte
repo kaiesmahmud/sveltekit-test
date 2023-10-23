@@ -1,5 +1,5 @@
 <script>
-  import HtmlEditor from "./HtmlEditor.svelte";
+  import SummaryEditor from "./SummaryEditor.svelte";
 
     export let summary,cssbtn
     let open = false ;
@@ -24,7 +24,8 @@
         {#if open}
             <!-- <div contenteditable="false" bind:innerHTML={summary} class="p-3  ">
             </div> -->
-            <HtmlEditor summary={summary} cssbtn={cssbtn}/>
+            <SummaryEditor summary={summary} cssbtn={cssbtn}/>
+            
         {/if}
     </div>
     
