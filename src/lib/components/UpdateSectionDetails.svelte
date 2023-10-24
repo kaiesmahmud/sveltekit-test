@@ -1,4 +1,5 @@
 <script>
+	import ModuleEditor from './ModuleEditor.svelte';
     let open = false ;
     let handleOpen = ()=>  {
         open = !open
@@ -22,20 +23,29 @@
     {#if open}
         <div class="flex flex-col gap-5 items-start my-5">
             {#each section.modules as module}
-                <p class="px-3 py-1 bg-blue-100 inline-block rounded shadow-lg">Type: {module.modname} : {module.modplural}</p>
-                <div class=" flex gap-5  items-center text-opacity-50">
-                    <img src={module.modicon} alt={module.name} >
-                    <p class="text-xl font-semibold text-black">{module.name}</p>
-                </div>
-                {#if module.summery}
-                    <p>{module.summery}</p>
-                {/if}
-                {#if module.description}
-                    <div contenteditable="false" bind:innerHTML={module.description} class="p-3 ">
+                {#if module.modname == "assign"}
+                    hello
+                    <p class="px-3 py-1 bg-blue-100 inline-block rounded shadow-lg">Type: {module.modname} : {module.modplural}</p>
+                    <div class=" flex gap-5  items-center text-opacity-50">
+                        <img src={module.modicon} alt={module.name} >
+                        <p class="text-xl font-semibold text-black">{module.name}</p>
                     </div>
+                    {#if module.summery}
+                        <p>{module.summery}</p>
+                    {/if}
+                    {#if module.description}
+                        <div contenteditable="false" bind:innerHTML={module.description} class="p-3 ">
+                        </div>
+                    {/if}
+                    {#if module.url}
+                        <a href={module.url} class={cssbtn}>Test Submission</a>
+                    {/if}
                 {/if}
-                {#if module.url}
-                    <a href={module.url} class={cssbtn}>Test Submission</a>
+
+
+                {#if module.modname == "label"}
+                    <ModuleEditor description={module.description} name={module.name} modname={module.modname} modicon={module.modicon} modplural={module.modplural} summery={module.summery} cssbtn={cssbtn}/>
+                    
                 {/if}
             {/each}
         </div>
