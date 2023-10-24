@@ -6,16 +6,12 @@
     export let course
     export let enrolled
     export let courseImages
-    let enrollmsg,handleEnroll ;
-    onMount(()=>{
-        if(userType == 'student'){
-            handleEnroll = async()=>{
-            // console.log("Handling Enroll")
-            const isEnrolled = await enrollCourse(userToken,course.id,userType) //Only For Students - Not Teachers
-            if(!isEnrolled){ enrollmsg = " Checking Enrollment"}
-        }
-	}
-    })
+    let enrollmsg ;
+
+    let handleEnroll = async()=>{
+        const isEnrolled = await enrollCourse(userToken,course.id,userType) //Only For Students - Not Teachers
+        if(!isEnrolled){ enrollmsg = " Checking Enrollment"}
+    }
     
     // console.log("getting courseimages",courseImages)
     let open = false
