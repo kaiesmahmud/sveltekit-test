@@ -1,6 +1,6 @@
 <script>
     import grapesjs from 'grapesjs';
-    import { onMount, afterUpdate } from 'svelte';
+    import { onMount } from 'svelte';
     export let cssbtn,summary
     let editor;
     let updatedHtml = summary; // Store the edited HTML
@@ -22,6 +22,7 @@
                 label: '<div class="text-2xl">Add Section</div>', // You can use HTML/SVG inside labels
                 attributes: { class:'gjs-block-section' },
                 content: `<section>
+                <h1>This is a simple title</h1>
                 <h1>This is a simple title</h1>
                 <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
                 </section>`,
@@ -53,43 +54,35 @@
         updatedHtml = editor.getHtml();
         // console.log(updatedHtml)
       });
-    });
+
+      editor.on('block:activate', block => {
+        if (block.id === 'image') {
+          const image = block.querySelector('img');
+          const imageData = getImageData(image);
+          console.log("Image Data is ", imageData)
+          // Upload the image data to the server here
+        }
+      });
+
+
+
+    });//onMout()
   
     // Function to update HTML with edited content
     function updateHtml() {
       updatedHtml = editor.getHtml();
-      console.log("Updated Html",updatedHtml)
+      let removeBody = updatedHtml.replace('<body>',"").replace("</body>","")
+      console.log("Updated Html",removeBody)
     }
-    function addTextBlock() {
-    const textBlock = editor.BlockManager.get('text');
-    if (textBlock) {
-      editor.runCommand('add-block', {
-        block: textBlock,
-      });
+    function getImageData(image) {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(image, 0, 0);
+      return canvas.toDataURL();
     }
-  }
 
-  // Function to add an image block
-  function addImageBlock() {
-    const imageBlock = editor.BlockManager.get('image');
-    if (imageBlock) {
-      editor.runCommand('add-block', {
-        block: imageBlock,
-      });
-    }
-  }
 
-  // Function to add a title block
-  function addTitleBlock() {
-    const titleBlock = editor.BlockManager.get('text');
-    if (titleBlock) {
-      // Customize the title block as needed
-      titleBlock.set('content', '<h2>Your Title Here</h2>');
-      editor.runCommand('add-block', {
-        block: titleBlock,
-      });
-    }
-  }
+
   </script>
   
   <div class="html-editor ">
