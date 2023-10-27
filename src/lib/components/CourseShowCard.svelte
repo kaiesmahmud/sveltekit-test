@@ -8,9 +8,9 @@
     export let courseImages
     let enrollmsg ;
 
-    let handleEnroll = async()=>{
-        const isEnrolled = await enrollCourse(userToken,course.id,userType) //Only For Students - Not Teachers
-        if(!isEnrolled){ enrollmsg = " Checking Enrollment"}
+    let handleEnroll = ()=>{
+        enrollCourse(userToken,course.id, userType) //Only For Students - Not Teachers
+        // if(!isEnrolled){ enrollmsg = " Checking Enrollment"}
     }
     
     // console.log("getting courseimages",courseImages)

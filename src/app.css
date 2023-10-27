@@ -5,3 +5,7 @@
 .custom__container{
     @apply flex flex-col justify-center gap-5 bg-slate-50 rounded overflow-hidden shadow-lg p-5
 }
+
+#html-editor, .gjs-dashed{
+    font-size: 20px;
+  }

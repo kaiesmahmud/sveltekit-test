@@ -9,8 +9,9 @@ export const enrollCourse = async (token, courseid,userType)=>{
         const enrollCourse = await response.json();
         console.log("Got Enrolled Courses ", enrollCourse)
         
-        if(enrollCourse.status){
-            window.location.href = '/'+userType+'/dashboard';
+        if(enrollCourse){
+            window.location.reload();
+            window.location.href = '/student/dashboard';
         }
         // return enrollCourse.status;  // Ruturns True or False
     } catch (error) {

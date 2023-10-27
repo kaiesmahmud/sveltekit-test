@@ -2,11 +2,11 @@
 // it so that it gets served as a static asset in production
 
 import { addCourseImg } from '$lib/fetch/addCourseImg.js';
-import { getRolesEnrolls } from '../lib/fetch/getRollsEnrolls.js';
+import { getRolesEnrolls } from '$lib/fetch/getRollsEnrolls.js';
 
 // export const prerender = 'auto';  
-export const prerender = false;  
-export const ssr = false
+export const prerender = true;  
+export const ssr = true
 
 
 export const load = async({parent,fetch}) => {

@@ -1,7 +1,8 @@
 <script>
   import SummaryEditor from "./SummaryEditor.svelte";
 
-    export let summary,cssbtn
+    export let summary,cssbtn,courseid,token,shortname,fullname
+
     let open = false ;
 
     let handleOpen = ()=>  {
@@ -22,9 +23,8 @@
             {/if}
         </div>
         {#if open}
-            <!-- <div contenteditable="false" bind:innerHTML={summary} class="p-3  ">
-            </div> -->
-            <SummaryEditor summary={summary} cssbtn={cssbtn}/>
+            
+            <SummaryEditor summary={summary} cssbtn={cssbtn} token={token} courseid={courseid} shortname={shortname} fullname={fullname}/>
             
         {/if}
     </div>
