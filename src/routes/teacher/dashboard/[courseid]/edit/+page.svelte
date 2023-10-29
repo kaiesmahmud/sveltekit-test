@@ -18,7 +18,7 @@
 <h6 class=" text-center">{viewCourseDetails.displayname}</h6>
 
 <div class="custom__container">
-    <ImageUpdate id={id} courseimage={courseimage} shortname={shortname} cssbtn={cssbtn} token={token}/>
+    <ImageUpdate  author={data.user?.username} id={id} courseimage={courseimage} shortname={shortname} cssbtn={cssbtn} token={token}/>
 </div>
 
 <div class="custom__container mt-10">
