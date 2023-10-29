@@ -9,7 +9,7 @@ export const getRolesEnrolls = async (token,id,fetch)=>{
                 })
             const rolesEnrolls = await rolesEnrollsResponse.json();
     
-            // console.log("Roles Data ",rolesEnrolls[0])
+            console.log("core_user_get_course_user_profiles - ",rolesEnrolls[0])
             
             //Return Users Info including user roles & enrolledCourses !
             return { roles:rolesEnrolls[0].roles || [] , enrolledcourses: rolesEnrolls[0]?.enrolledcourses || []}

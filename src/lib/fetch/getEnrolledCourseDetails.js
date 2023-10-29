@@ -7,7 +7,8 @@ export const getEnrolledCourseDetail = async (token,courseid,fetch) => {
                     method: 'GET',
                 })
             const courseSectionDetails = await response.json();
-            console.log(courseSectionDetails)
+            console.log("core_course_get_contents - ",courseSectionDetails)
+            
             return courseSectionDetails
         }
     } catch (error) {

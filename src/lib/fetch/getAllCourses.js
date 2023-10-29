@@ -10,9 +10,13 @@ export const getAllCourses = async(token) =>{
                 }
             })
         const allCourses = await response.json();
+
+        console.log("core_course_get_courses - ", allCourses)
         
         //Filtering and Removing extra Formats of data
         const coursesWithOutImg = allCourses.filter(c=> c.format == "topics")
+
+        console.log("Filtered - core_course_get_courses - ", coursesWithOutImg)
 
         return coursesWithOutImg ; // Returns an Array of Objects containing Courses
 

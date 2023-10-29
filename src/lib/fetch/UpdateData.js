@@ -6,7 +6,8 @@ export const updateCourseName = async (token,courseid,newfullname,newshortname) 
                 method: 'GET',
             })
         const updated = await response.json();  
-        console.log(updated)
+        console.log("core_course_update_courses - ",updated)
+
     
         if(updated){
             window.location.href = '/teacher/dashboard' ;
@@ -41,9 +42,8 @@ export const updateSummary = async (token, courseId, summary,shortname,fullname)
                     //   body: JSON.stringify(params),
                     });
                   
-                console.log("this is the response - ", UpdateSummaryResponse)
                 const result = await UpdateSummaryResponse.json()
-                console.log("The Result is ",result)
+                console.log("core_course_update_courses - ",result)
                  
                 if(result){
                     window.location.href = '/teacher/dashboard' ;

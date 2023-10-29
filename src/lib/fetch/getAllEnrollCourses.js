@@ -7,8 +7,8 @@ export const getAllEnrollCourses = async (token,userid,fetch)=> {
                 method: 'GET',
             })
         const allEnrolledCourses = await response.json();
-        // console.log("Got Enrolled Courses ", allEnrolledCourses)
-
+        
+        console.log("core_enrol_get_users_courses- ", allEnrolledCourses)
         return allEnrolledCourses;
     } catch (error) {
         console.error(error.message)

@@ -10,7 +10,7 @@ export const getUserProfile = async (token,username,fetch)=> {
                 }
             })
         const profileInfo = await profileInfoResponse.json();
-
+        console.log("core_user_get_users - ", profileInfo.users[0])
 
         return {...profileInfo.users[0]}
 
