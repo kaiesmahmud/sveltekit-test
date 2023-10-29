@@ -9,7 +9,7 @@ export const addCourseImg = async (token,courseid,fetch)=> {
             })
         const courseWithImgURL = await response.json();
         
-        // console.log("addCourseImg Working !")
+        console.log("core_course_get_courses_by_field - ",courseWithImgURL.courses[0])
         return  courseWithImgURL.courses[0].courseimage ;  // Return type String
 
     } catch (error) {

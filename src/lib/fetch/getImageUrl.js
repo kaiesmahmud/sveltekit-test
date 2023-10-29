@@ -81,3 +81,5 @@ export const getImageUrl = async (token ) => {
     }
     return imgURL ||filecontent ;
 }
+
+export const uploadImage = async (base64Image, courseId) => {}
