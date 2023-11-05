@@ -20,6 +20,7 @@
 	"type": "module",
 	"dependencies": {
 		"grapesjs": "^0.21.7",
-		"grapesjs-plugin-file": "^0.0.5"
+		"grapesjs-plugin-file": "^0.0.5",
+		"grapesjs-tailwind": "^1.0.10"
 	}
 }

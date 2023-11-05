@@ -3,6 +3,7 @@
     import ImageUpdate from '$lib/components/ImageUpdate.svelte';
     import UpdateSummary from '$lib/components/UpdateSummary.svelte';
     import UpdateSectionDetails from '$lib/components/UpdateSectionDetails.svelte';
+    import "../../../../editorCss.css"
 
     export let data
     let viewCourseDetails = data.viewCourseDetails
@@ -28,11 +29,11 @@
     <UpdateSummary summary={summary} cssbtn={cssbtn} token={token} courseid={id} shortname={shortname} fullname={fullname} />
 {/if}
 
-<div class="mt-10 flex flex-col gap-10 ">
+<!-- <div class="mt-10 flex flex-col gap-10 ">
     {#each courseSectionDetails as section}
         <UpdateSectionDetails section={section}/>
     {/each}
-</div>
+</div> -->
 
 <style>
 .one-column{

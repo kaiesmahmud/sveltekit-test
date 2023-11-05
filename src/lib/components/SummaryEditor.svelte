@@ -1,25 +1,95 @@
 <script>
-    import '../../assets/grapes.min.css';
     import grapesjs from 'grapesjs';
+    //Drag & Drop Components Basic HTML
+	  import { draglist, footer, header, heroSection, heroSection2, phraseSection } from './../plugins/dragComponents.js';
+    //Tailwind Custom Plugin
+    import tailwindComponent from './../plugins/tailwind'
+    //Plugins -- 
+    import { gjsBlocksBasic, grapesjsPluginForms, grapesjsComponentCountdown, grapesjsPluginExport, grapesjsTabs, grapesjsCustomCode, grapesjsTouch, grapesjsParserPostcss, grapesjsTooltip, grapesjsTuiImageEditor, grapesjsTyped, grapesjsStyleBg, grapesjsPresetWebpage } from 'grapesjs-plugin-file';
+
     import { onMount } from 'svelte';
     import { updateSummary } from '../fetch/UpdateData';
+
     export let cssbtn,summary,token, courseid,shortname,fullname 
     console.log("token in SummaryEditor Component - ",token)
     // console.log("token in SummaryEditor Component - ",token, " no comma - ", token.replace(",,",""))
-
+    
     let editor;
     let updatedHtml = summary; // Store the edited HTML
     
     // Initialize GrapesJS editor
     onMount(() => {
       editor = grapesjs.init({
-        container: '#html-editor',
-        css: '../../assets/grapes.min.css',
+        container: '#gjs',
+        fromElement: true,
+        showOffsets: true,
         components: ['image', 'text', 'text-italic', 'text-bold', 'paragraph','cell','div'],
         // plugins: ['gjs-plugin-file'],  // Before
-        plugins: [], //After
+        plugins: [
+          tailwindComponent,
+          gjsBlocksBasic,
+          grapesjsPluginForms,
+          grapesjsComponentCountdown,
+          grapesjsPluginExport,
+          grapesjsTabs,
+          grapesjsCustomCode,
+          grapesjsTouch,
+          grapesjsParserPostcss,
+          grapesjsTooltip,
+          grapesjsTuiImageEditor,
+          grapesjsTyped,
+          grapesjsStyleBg,
+          grapesjsPresetWebpage,
+        ],
+        pluginsOpts: {
+          tailwindComponent : {},
+          'gjs-blocks-basic': { flexGrid: true ,},
+          'grapesjs-tui-image-editor': {
+            script: [
+              // 'https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.7/fabric.min.js',
+              'https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js',
+              'https://uicdn.toast.com/tui-color-picker/v2.2.7/tui-color-picker.min.js',
+              'https://uicdn.toast.com/tui-image-editor/v3.15.2/tui-image-editor.min.js'
+            ],
+            style: [
+              'https://uicdn.toast.com/tui-color-picker/v2.2.7/tui-color-picker.min.css',
+              'https://uicdn.toast.com/tui-image-editor/v3.15.2/tui-image-editor.min.css',
+            ],
+          },
+          'grapesjs-tabs': {
+            tabsBlock: { category: 'Extra' }
+          },
+          'grapesjs-typed': {
+            block: {
+              category: 'Extra',
+              content: {
+                type: 'typed',
+                'type-speed': 40,
+                strings: [
+                  'Text row one',
+                  'Text row two',
+                  'Text row three',
+                ],
+              }
+            }
+          },
+          'grapesjs-preset-webpage': {
+            modalImportTitle: 'Import Template',
+            modalImportLabel: '<div style="margin-bottom: 10px; font-size: 13px;">Paste here your HTML/CSS and click Import</div>',
+            modalImportContent: function(editor) {
+              return editor.getHtml() + '<style> body{width:100%} '+editor.getCss()+'</style>'
+            },
+          },
+        },
         // storageManager: { autosave: false, autoload: false },
         storageManager: false,
+        canvas: {
+          styles: [
+            "../../app.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
+          ],
+          scripts: ["https://cdn.tailwindcss.com"]
+        },
         blockManager: {
           blocks: [
             // Basic Section
@@ -27,16 +97,22 @@
               id: 'one-column',
               label: '1 Column',
               category: 'Basic',
-              attributes: { class: 'fa fa-columns' },
+              attributes: { class: 'fa fa-regular fa-square ' },
               content: '<div class="one-column">Your one column content here</div>',
+              style: {
+                height: '100px' ,
+                
+              }
             },
             {
               id: 'two-column',
               label: '2 Column',
               category: 'Basic',
               type: 'cell',
-              attributes: { class: 'fa fa-columns' },
-              content: '<div class="gjs-row"><div class="gjs-cell"></div><div class="gjs-cell"></div></div>',
+              attributes: { class: 'fa fa-columns' ,
+              height: '300px', display: 'flex'
+            },
+              content: '<div class="flex items-center justify-around w-full p-1 "><div class="block w-full h-[200px]"><p>first column</p></div><div class="block w-full h-[200px]"><p>Second column</p></div></div>',
             },
             {
               id: 'three-column',
@@ -62,7 +138,12 @@
               select: true,
               // You can pass components as a JSON instead of a simple HTML string,
               // in this case we also use a defined component type `image`
-              content: { type: 'image' },
+              content: { 
+                type: 'image' ,
+                "attributes": {
+                  "class": "w-full p-5 rounded-lg"
+                }
+            },
               // This triggers `active` event on dropped components and the `image`
               // reacts by opening the AssetManager
               activate: true,
@@ -79,7 +160,7 @@
               label: 'Add Quote',
               category: 'Basic',
               attributes: { class: 'fa fa-quote-left' },
-              content: '<blockquote>Your quote here</blockquote>',
+              content: '<blockquote class="center p-10 font-extralight italic">Your quote here</blockquote>',
             },
 
             // Frame Section
@@ -88,21 +169,42 @@
               label: 'Header',
               category: 'Frame',
               attributes: { class: 'fa fa-header' },
-              content: '<div class="header">Your header content here</div>',
+              content: header,
             },
             {
               id: 'footer',
               label: 'Footer',
               category: 'Frame',
-              attributes: { class: 'fa fa-footer' },
-              content: '<div class="footer">Your footer content here</div>',
+              attributes: { class: 'fa fa-fire' },
+              content: footer,
             },
             {
               id: 'hero-section',
               label: 'Hero Section',
               category: 'Frame',
               attributes: { class: 'fa fa-star' },
-              content: '<div class="hero-section">Your hero section content here</div>',
+              content: heroSection,
+            },
+            {
+              id: 'hero-section-2',
+              label: 'Hero Section-2',
+              category: 'Frame',
+              attributes: { class: 'fa fa-star' },
+              content: heroSection2,
+            },
+            {
+              id: 'phrase-section',
+              label: 'Phrase Section',
+              category: 'Frame',
+              attributes: { class: 'fa fa-star' },
+              content: phraseSection,
+            },
+            {
+              id: 'list-section',
+              label: 'List Section',
+              category: 'Frame',
+              attributes: { class: 'fa fa-list' },
+              content: draglist,
             },
           ],
         },
@@ -144,29 +246,28 @@
       if(removeBody){
         await updateSummary(token, courseid,removeBody,shortname,fullname)
       }
-
     }
     
 
 
 
-  </script>
-  
+</script>
+
+
   <div class="html-editor ">
-    <div id="html-editor" class="max-h-[80vh]"></div>
+    <div id="gjs" class="max-h-[80vh] "></div>
     <button on:click={updateHtml} class={`${cssbtn} inline-block mt-10`}>Update Course</button>
   </div>
-
 <style>
  
 .one-column{
-    min-height: 5rem;
+    height: 5rem;
 }
 .two-column{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    min-height: 5rem;
+    height: 5rem;
     
 }
 .gjs-row {
