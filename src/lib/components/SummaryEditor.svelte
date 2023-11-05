@@ -85,7 +85,7 @@
         storageManager: false,
         canvas: {
           styles: [
-            "../../app.css",
+            "../../app.css", //Not working and Throwing Error
             "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
           ],
           scripts: ["https://cdn.tailwindcss.com"]
@@ -101,7 +101,6 @@
               content: '<div class="one-column">Your one column content here</div>',
               style: {
                 height: '100px' ,
-                
               }
             },
             {
@@ -109,8 +108,10 @@
               label: '2 Column',
               category: 'Basic',
               type: 'cell',
-              attributes: { class: 'fa fa-columns' ,
-              height: '300px', display: 'flex'
+              attributes: { 
+                class: 'fa fa-columns' ,
+                height: '300px', 
+                display: 'flex'
             },
               content: '<div class="flex items-center justify-around w-full p-1 "><div class="block w-full h-[200px]"><p>first column</p></div><div class="block w-full h-[200px]"><p>Second column</p></div></div>',
             },
